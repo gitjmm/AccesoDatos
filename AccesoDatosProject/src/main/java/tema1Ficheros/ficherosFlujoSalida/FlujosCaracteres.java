@@ -37,7 +37,7 @@ public class FlujosCaracteres {
 		}catch(FileNotFoundException e) {
 			e.printStackTrace();
 		}catch(IOException e) {
-			e.printStackTrace();	
+			System.out.println(e);	
 		}finally {
 			if (filew != null)
 				try {

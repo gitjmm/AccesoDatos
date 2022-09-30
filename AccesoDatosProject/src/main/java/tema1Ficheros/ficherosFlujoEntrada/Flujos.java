@@ -38,7 +38,8 @@ public class Flujos {
 			fin = new FileInputStream("fichero.dat"); //Ruta. Lo almacena en la raiz del proyecto.
 			//Ejemplo ruta completa "C:\\Users\\Usuario\\Documents\\saludo.txt"
 			int valor;
-			while ((valor = fin.read()) != -1) {
+			//Si f.read() retorna -1 termina
+                        while ((valor = fin.read()) != -1) {
 				System.out.println(valor);
 			}
 		//Excepciones de la más específica a la genérica

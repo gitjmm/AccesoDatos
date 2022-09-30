@@ -2,7 +2,6 @@ package tema1Ficheros.ficherosFlujoEntrada;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 
 
