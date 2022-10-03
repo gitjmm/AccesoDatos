@@ -27,7 +27,7 @@ public class CrearFichero {
 			d.mkdir();
                         System.out.println(d.getAbsolutePath());
 			
-                        //Librería java.nio
+                        //-------Librería java.nio------------------
                         //Utilizamos createDirectory y createDirectories
                         Path filePath = Paths.get("C:\\Files\\");
                         String fileName = "Java Tutorial.doc";

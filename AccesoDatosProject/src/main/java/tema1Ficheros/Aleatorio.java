@@ -13,8 +13,9 @@ public class Aleatorio {
 	public static void main(String[] args) {
 		try {
 			RandomAccessFile f = new RandomAccessFile("saludo.txt","r");
-			f.seek(0); //Posicionamos el puntero en el byte 0 (al principio, puede ser otra)
-			long filePointer = f.getFilePointer(); //Posición del puntero
+			f.seek(0); //Posicionamos el puntero en el byte 0 (al principio, puede ser otro valor)
+			//f.seek(f.length()); Nos  posiciona al final del fichero
+                        long filePointer = f.getFilePointer(); //Posición del puntero
 			//Leemos el byte de la posición 0
 			int unByte = f.read();
 			System.out.println((char)unByte);

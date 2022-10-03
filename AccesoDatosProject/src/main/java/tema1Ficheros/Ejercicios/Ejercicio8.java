@@ -15,10 +15,10 @@ import java.io.IOException;
  * @author Usuario
  * 
  */
-public class Ejercicio5 {
+public class Ejercicio8 {
     
     public static void main(String[] args) {
-    //Escribimos 4 lineasa en los dos ficheros
+    //Escribimos 4 lineas en los dos ficheros
       try {
         FileWriter fw1 = new FileWriter("fichero1");
         FileWriter fw2 = new FileWriter("fichero2");

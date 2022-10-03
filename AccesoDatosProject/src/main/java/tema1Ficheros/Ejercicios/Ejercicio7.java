@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 /**
  *
  * @author Usuario
- * Escribir un programa 
+ * 
  */
 public class Ejercicio7 {
     public static void main(String args[]){
@@ -22,7 +22,8 @@ public class Ejercicio7 {
             archivo = new FileOutputStream("numeros");
             for (int i=0; i<100; i++){
                 archivo.write(i);
-            }   archivo.close();
+            }   
+            archivo.close();
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         } catch (IOException ex) {

@@ -32,7 +32,7 @@ public class Miarraybytes {
 		  
 		  FileOutputStream fout = new FileOutputStream("mifichero.dat");    
         
-	      ByteArrayOutputStream bout=new ByteArrayOutputStream();    
+	      ByteArrayOutputStream bout = new ByteArrayOutputStream();    
 	      //Escribimos al buffer
 	      bout.write(buf);    
 	      //Escribimos al fichero (puede ser a más de uno)

@@ -1,32 +1,29 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package tema2FlujosFicheros;
 
-import java.io.IOException;
-import java.io.StreamTokenizer;
-import java.io.StringReader;
+import java.util.StringTokenizer;
 
+/**
+ *
+ * @author Usuario
+ * La clase StringTokenizer se usa para separar una cadena de caracteres en una serie de elementos o tokens.
+ * Se incluye en el paquete java.util
+ * Los tokens se separan mediante delimitadores.
+ * Un objeto StringTokenizer se construye a partir de un objeto String.
+ * hasMoreTokens() devuelve true si hay más tokens que obtener en la cadena.
+ * nextToken() devuelve un String con el siguiente token.
+ * countTokens()
+ * Delimitadores
+ * espacio en blanco, \t,\n, \r, \f (avance página) 
+ */
 public class Tokens {
-
-	public static void main(String[] args) {
-		StreamTokenizer st = new StreamTokenizer(new StringReader("Modulo Acceso a Datos 2"));
-		//Mientras el token que leemos no sea final de fichero TT_EOF
-		try {
-			while(st.nextToken() != StreamTokenizer.TT_EOF) {
-				//Si es una palabra (caracteres)
-				if (st.ttype == StreamTokenizer.TT_WORD) {
-					System.out.println(st.sval);
-				//Si son números
-				}else if (st.ttype == StreamTokenizer.TT_NUMBER) {
-					System.out.println(st.nval);
-				//Si finaliza el fichero
-				}else if (st.ttype == StreamTokenizer.TT_EOL) {
-					System.out.println();
-				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
-
+    public static void main(String args[]){
+        String s = "uno, dos, tres, cuatro. cinco";
+        StringTokenizer st = new StringTokenizer(s,",");                                                                      
+        while (st.hasMoreTokens())                                                                                        
+            System.out.println(st.nextToken());
+    }
 }
