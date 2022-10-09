@@ -28,7 +28,7 @@ public class Miarraybytes {
 		    } 
 		  
 		  //Programa 2. ByteArrayOutputStream
-		  //array de bytes se escribe en un fichero mifichero.dat
+		  //array de bytes se escribe en un fichero binario mifichero.dat
 		  
 		  FileOutputStream fout = new FileOutputStream("mifichero.dat");    
         
