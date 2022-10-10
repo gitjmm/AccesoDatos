@@ -32,15 +32,15 @@ public class ProcesarXMLEmpresa {
             
             doc.getDocumentElement().normalize();
             
-            NodeList nList = doc.getElementsByTagName("trabajador");
+            NodeList nodeList = doc.getElementsByTagName("trabajador");
             
-            for (int i = 0; i < nList.getLength(); i++) {
-                Node node = nList.item(i);
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                Node node = nodeList.item(i);
                 
                 if (node.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) node;
+                    Element elem = (Element) node;
                     
-                    if(eElement.hasChildNodes()) {
+                    if(elem.hasChildNodes()) {
                         NodeList nl = node.getChildNodes();
                         for(int j=0; j<nl.getLength(); j++) {
                             Node nd = nl.item(j);
