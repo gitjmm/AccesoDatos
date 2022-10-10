@@ -37,12 +37,15 @@ public class ProcesarXMLEjemplo {
             File fichXML = new File("ejemplo.xml");
             //Creamos el arbol DOM a partir del fichero
             Document doc = db.parse(fichXML);
-            
+            //normalize. Elimina nodos vacíos y combina nodos adyacentes en caso de que los hubiera
+            doc.getDocumentElement().normalize();
             //-------- Procesamos el arbol DOM ---------//
+            //Elemento raíz
+            System.out.println("Elemento raiz:" + doc.getDocumentElement().getNodeName());
             //Nodo animal
             NodeList listaAnimales = doc.getElementsByTagName("animal");
             
-            //Recorremos los nodos animal (se puede usar foreach
+            //Recorremos los nodos animal (se puede usar foreach)
             for (int i= 0; i < listaAnimales.getLength(); i++){
                 //Cada item de la lista es un nodo
                 Node nodo = listaAnimales.item(i);
@@ -53,7 +56,7 @@ public class ProcesarXMLEjemplo {
                 
                 //animal tiene nodos hijos: nombre, tipo, color y edad
                 NodeList nodoHijos = elem.getChildNodes();
-                //Recorremos los hijos de nodos de equipo: nombre, tipo, color y edad
+                //Recorremos los hijos de nodos de animal: nombre, tipo, color y edad
                 //Ver arbol DOM
                 for (int j = 0; j < nodoHijos.getLength(); j++){
                        Node nodoHijo = nodoHijos.item(j);
@@ -73,8 +76,27 @@ public class ProcesarXMLEjemplo {
                         }
                 }
             }
+            System.out.println("------------RECORREMOS ARBOL DE OTRA FORMA-------------");
+            System.out.println("Elemento raiz:" + doc.getDocumentElement().getNodeName());
+            NodeList nList = doc.getElementsByTagName("animal");
+
+            for (int i = 0; i < nList.getLength(); i++) {
+              Node node = nList.item(i);
+
+              if (node.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) node;
+
+                if(eElement.hasChildNodes()) {
+                  NodeList nl = node.getChildNodes();
+                  for(int j=0; j<nl.getLength(); j++) {
+                    Node nd = nl.item(j);
+                    System.out.println(nd.getTextContent());
+                  }
+                }
+              }
+            }
         } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(ProcesarXMLEjemplo.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
         
         

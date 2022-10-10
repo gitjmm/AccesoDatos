@@ -21,6 +21,7 @@ import org.xml.sax.SAXException;
  *
  * @author Usuario
  * Vamos a leer el XML de equipos de futbol desde la etiqueta jugador.
+ * 
  */
 public class ProcesarXMLEquipo {
     
@@ -41,11 +42,11 @@ public class ProcesarXMLEquipo {
             //Realiza el parse o procesamiento del documento XML. Desde doc ya podemos acceder a los
             //elementos y propiedades del XML
             Document doc = dBuilder.parse(fileXML);
-            
+            doc.getDocumentElement().normalize();
             //Nodo equipo
             NodeList listaEquipos = doc.getElementsByTagName("equipo");
             //Nodo jugador
-            NodeList listaJugadores = doc.getElementsByTagName("jugador");
+            
             //Recorremos los nodos equipo
             for (int i= 0; i < listaEquipos.getLength(); i++){
                 Node nodo = listaEquipos.item(i);
@@ -62,53 +63,20 @@ public class ProcesarXMLEquipo {
                        if (nodoHijo.getNodeType() == Node.ELEMENT_NODE && "ciudad".equals(nodoHijo.getNodeName())){
                            System.out.println(nodoHijo.getTextContent());
                         }
-                       if (nodoHijo.getNodeType() == Node.ELEMENT_NODE && "jugador".equals(nodoHijo.getNodeName())){
-                            //Recorremos los nodos jugador
-                            Node nodoJugador = listaJugadores.item(j);
-                            Element elemJugador = (Element) nodoJugador;
-                            NodeList nodoHijosJugador = elemJugador.getChildNodes();
-                             //Recorremos los hijos de nodos jugador: nombre, nacionalidad
-                             for (int k = 0; j < listaJugadores.getLength(); k++){
-
-                                     Node nodoHijoJugador = nodoHijosJugador.item(k);
-                                    //Comprobamos tipos de los nodos hijos. Si son element mostramos el valor
-                                    if (nodoHijoJugador.getNodeType() == Node.ELEMENT_NODE && "nombre".equals(nodoHijo.getNodeName())){
-                                        System.out.println(nodoHijo.getTextContent());
-                                     }
-                                    if (nodoHijoJugador.getNodeType() == Node.ELEMENT_NODE && "nacionalidad".equals(nodoHijo.getNodeName())){
-                                        System.out.println(nodoHijo.getTextContent());
-                                     }
-                             }
-                       }
-                }       
-            }
-            
-             /*
-            //Nodo equipo
-            NodeList listaEquipos = doc.getElementsByTagName("equipo");
-            
-            for (int i= 0; i < listaEquipos.getLength(); i++){
-                Node nodo = listaEquipos.item(i);
-                Element elem = (Element) nodo;
-                
-                nombreCiudad = elem.getElementsByTagName("nombre").item(0).getTextContent();
-                ciudad = elem.getElementsByTagName("ciudad").item(0).getTextContent();
-                
-                 System.out.println("Nombre equipo: "+nombreCiudad+" "+"ciudad: "+ciudad);
-                
-                //Nodo jugadores
-                NodeList listaJugadores = doc.getElementsByTagName("jugador");
-                
-                for (int j= 0; j < listaJugadores.getLength(); j++){
-                    Node nodoHijo = listaJugadores.item(j);
-                    Element elemHijo = (Element) nodoHijo;
-                
-                    nombreJugador = elem.getElementsByTagName("nombre").item(0).getTextContent();
-                    nacionalidad = elemHijo.getElementsByTagName("nacionalidad").item(0).getTextContent();
-   
-                    System.out.println("Nombre Jugador: "+nombreJugador+" "+"Nacionalidad: "+nacionalidad);    
+                       //Procesamos la etiqueta jugadores
+                       if (nodoHijo.getNodeType() == Node.ELEMENT_NODE && "jugadores".equals(nodoHijo.getNodeName())){
+                           Element elem2 = (Element) nodoHijo;
+                           //Si jugadores tiene nodos hijo obtenemos los nodos hijos y los recorremos 
+                           if(elem2.hasChildNodes()) {
+                                NodeList nl = nodoHijo.getChildNodes();
+                                for(int k=0; k<nl.getLength(); k++) {
+                                  Node nd = nl.item(k);
+                                  System.out.println(nd.getTextContent());
+                                }
+                            }
+                        }
+                    }
                 }
-            }*/
             
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             System.out.println(ex);

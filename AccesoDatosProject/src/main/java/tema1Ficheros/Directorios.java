@@ -18,7 +18,7 @@ public class Directorios {
             if (d.isDirectory()){
                 List<File> listaFicheros = Arrays.asList(d.listFiles());
                 //Método list(). Devuelve todo el contenido de un directorio (archivos y directorios)
-                //String[] lista = d.list();
+                //String[] l = d.list();
                 for (File l : listaFicheros) {
                     if (l.isFile())
                         System.out.println("fich: "+l.getName());
