@@ -16,16 +16,16 @@ public class MiArrayChar {
 		 //Programa1. CharArrayWriter
 		 CharArrayWriter fout=new CharArrayWriter();    
          try {
-			fout.write("Programa de uso de CharArrayWriter");
+		fout.write("Programa de uso de CharArrayWriter");
 			
-			FileWriter f1=new FileWriter("fich1.txt");    
+		FileWriter f1=new FileWriter("fich1.txt");    
 	        FileWriter f2=new FileWriter("fich2.txt");    
 	            
 	        fout.writeTo(f1);    
 	        fout.writeTo(f2); 
 	        
 	        f1.close();    
-			f2.close();
+		f2.close();
 			
 			//Programa2. CharArrayReader. Leemos un array de caracteres como stream 
 			//y lo mostramos por pantalla
