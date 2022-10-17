@@ -39,6 +39,7 @@ public class ProcesarXMLEjemplo {
             Document doc = db.parse(fichXML);
             //normalize. Elimina nodos vacíos y combina nodos adyacentes en caso de que los hubiera
             doc.getDocumentElement().normalize();
+            
             //-------- Procesamos el arbol DOM ---------//
             //Elemento raíz
             System.out.println("Elemento raiz:" + doc.getDocumentElement().getNodeName());

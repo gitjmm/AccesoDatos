@@ -1,1 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><empresa><trabajador id="1"><nombre>Juan</nombre><lastname>Perez</lastname><nickname>jperez</nickname><salario>100000</salario></trabajador></empresa>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<empresa>
+    <trabajador id="1">
+        <nombre>Juan</nombre>
+        <lastname>Perez</lastname>
+        <nickname>jperez</nickname>
+        <salario>100000</salario>
+    </trabajador>
+</empresa>

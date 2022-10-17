@@ -19,6 +19,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
+
 public class LeerXPath {
 	public static void main(String[] args) throws Exception {
                 // La expresion xpath de busqueda. Muestra cualquier animal

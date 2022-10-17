@@ -12,6 +12,7 @@ import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -71,11 +72,11 @@ public class EscribirFicheroXML {
 		// escribir contenido en fichero xml
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		Transformer transformer = transformerFactory.newTransformer();
+                //añade salto de linea
+                transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 		DOMSource source = new DOMSource(doc);
 		StreamResult result = new StreamResult(new File("trabajadores.xml"));
 
-		// Output to console for testing
-		//StreamResult result = new StreamResult(System.out);
 
 		transformer.transform(source, result);
 
