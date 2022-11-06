@@ -7,6 +7,9 @@ package tema4Conectores1;
 /**
  *
  * @author Jorge Martínez
+ * executeQuery(String). Permite ejecutar sentencias SELECT. Devuelve un ResultSet (cursor).
+ 
+
  */
 
 
@@ -25,7 +28,7 @@ public class ConexionMysql {
     URL_CONEXION. equipo:puerto/basededatos
     
         */
-        private static final String DRIVER = "com.mysql.jdbc.Driver";
+        private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
         private static final String URL_CONEXION = "jdbc:mysql://localhost:3306/prueba";
         
         public static void main(String args[]) throws SQLException {
@@ -34,6 +37,7 @@ public class ConexionMysql {
             final String password = "admin";
             Connection dbConnection = null;
             Statement statement = null;
+            Statement statement2 = null;
             try {
                 //Registramos el driver de mysql
                 Class.forName(DRIVER);
@@ -41,12 +45,17 @@ public class ConexionMysql {
                 //Devuelve un objeto conexión que utilizaremos para conectarnos a la base de datos
                 Connection conn = DriverManager.getConnection(URL_CONEXION, usuario, password);
                 //Guardamos en una variable la consulta
-                String selectTableSQL = "SELECT ID,USERNAME,PASSWORD,NOMBRE FROM usuarios";
+                String selectTableSQL = "SELECT ID,USERNAME,PASSWORD,NOMBRE FROM usuarios";  
+                // ---- CONSULTA CON WHERE 
+                //String where = " WHERE NOMBRE = 'Luis'";
+                //String selectTableSQL = "SELECT ID,USERNAME,PASSWORD,NOMBRE FROM usuarios" + where;
+                
                 //Ejecutamos el método createStatement y creamos un objeto statement
                 //que nos va a permitir ejecutar consultas
                 statement = conn.createStatement();
-                //Ejecutamos la consulta y nos devolver un resultset (cursor)
+                //executeQuery(String). Ejecutamos la consulta y nos devuelve un Resultset (cursor)
                 ResultSet rs = statement.executeQuery(selectTableSQL);
+                
                 //Recorremos el resultset y mostramos la información de las columnas
                 while (rs.next()) {
                     String id = rs.getString("ID");
@@ -58,6 +67,23 @@ public class ConexionMysql {
                     System.out.println("psw : " + psw);
                     System.out.println("nombre : " + nombre);
                 }
+                
+                System.out.println("    ----- JOIN -------  ");
+                String joinTableSQL = "SELECT u.ID,u.USERNAME,m.NOMBRE FROM usuarios u JOIN  modulos m ON u.id = m.id_usuario";
+                //statement2 = conn.createStatement();
+                ResultSet rsJoin = statement.executeQuery(joinTableSQL);
+                //Recorremos el resultset y mostramos la información de las columnas
+                while (rsJoin.next()) {
+                    String id_usuario = rsJoin.getString("ID");
+                    String usr_username = rsJoin.getString("USERNAME");
+                    String nombre_modulo = rsJoin.getString("NOMBRE");
+              
+                    System.out.println("userid : " + id_usuario);
+                    System.out.println("usr : " + usr_username);
+                    System.out.println("nombre_modulo : " + nombre_modulo);
+                
+                }
+            
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
             } catch (ClassNotFoundException e) {
