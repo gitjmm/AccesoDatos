@@ -5,6 +5,8 @@
 package com.example;
 
 import com.example.domain.Persona;
+import java.util.Arrays;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,13 +23,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ControladorREST {
     @GetMapping("/")
-    public String comienzo(){
+    public List<Persona> comienzo(){
         Persona p = new Persona();
         p.setNombre("Juan");
         p.setApellido("Perez");
         p.setTelefono("11122223333");
         p.setEdad("30");
         //log.info("Esto es un mensaje de log");
-        return p.toString();
+        
+        Persona p2 = new Persona();
+        p2.setNombre("Juan");
+        p2.setApellido("Perez");
+        p2.setTelefono("11122223333");
+        p2.setEdad("30"); 
+        
+        List<Persona> personas = Arrays.asList(p,p2);
+        return personas;
     }
 }
