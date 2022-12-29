@@ -10,15 +10,21 @@ package hibernateproyecto;
  */
 import java.io.Serializable;
 import javax.persistence.*;
-
+//Si nos pide crear unidad de persistencia podemos indicar suprimir
 @Entity
 @Table(name="clientes")
 public class Clientes implements Serializable{
-	
+    /*
+    Claves primarias: @GeneratedValue
+    Auto. Hibernate elige el campo clave
+    Identity. Es la que más se usa. Se basa en un campo auto_increment. Muy usada en MYSQL
+    Sequence. Se utiliza en caso de usar una secuencia (elemento que genera valores Oracle y Postgres)
+    */
+    
 	//Especificamos las propiedades
 	@Id
 	@Column(name="id")
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	@Column(name="nombre")
 	private String nombre;
