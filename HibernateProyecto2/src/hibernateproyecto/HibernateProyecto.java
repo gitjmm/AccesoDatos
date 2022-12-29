@@ -94,6 +94,9 @@ public class HibernateProyecto {
                                 .executeUpdate();
                         miSesion.getTransaction().commit();
                         System.out.println("Registros eliminados");
+                        
+                        
+                        
 		}catch(Exception e) {
 			e.printStackTrace();
 					
