@@ -51,7 +51,7 @@ public class HibernateProyectoOneToMany {
                         //Guardamos los pedidos
                         miSesion.beginTransaction();
 			miSesion.save(p1);
-                        miSesion.save(p1);
+                        miSesion.save(p2);
 			miSesion.getTransaction().commit();
 			
 			System.out.println("Registro insertado en cliente y pedidos"+c.toString());
