@@ -9,6 +9,8 @@ package hibernateproyecto;
  * @author Jorge Martinez
  */
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -89,6 +91,9 @@ public class Cliente implements Serializable{
 	}
 	
 	//Relacionamos con la tabla cliente
+        //mappedBy. Indica la tabla principal y hacemos referencia al atributo cliente de cliente_info
+        //CascadeType.ALL. Aplica en la tabla hija cualquier cambio realizado en la principal
+        //@JoinColumn. Indica la columna usada en la join
         @OneToOne(mappedBy = "cliente",cascade=CascadeType.ALL)
         @JoinColumn(name="id")
         private Cliente_info cinfo;
@@ -101,7 +106,21 @@ public class Cliente implements Serializable{
             this.cinfo = cinfo;
         }
         
-       
+        
+        //Relación con la tabla pedido
+        @OneToMany(mappedBy = "cliente_pedido", cascade = CascadeType.ALL)
+        //@JoinColumn(name="id", nullable = false, updatable = false, insertable = false)
+        private List<Pedido> pedidos;
+        
+        public List<Pedido> getPedidos(){
+            return pedidos;
+        }
+        
+        public void addPedido(Pedido p){
+            if (pedidos == null) pedidos=new ArrayList<>();
+            pedidos.add(p);
+            p.setCliente(this);
+        }
 
 }
 

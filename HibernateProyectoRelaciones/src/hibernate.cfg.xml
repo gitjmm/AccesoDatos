@@ -19,6 +19,7 @@
     <property name="hbm2ddl.auto">update</property>
     <mapping class="hibernateproyecto.Cliente"/>
     <mapping class="hibernateproyecto.Cliente_info"/>
+    <mapping class="hibernateproyecto.Pedido"/>
   </session-factory>
 </hibernate-configuration>
 

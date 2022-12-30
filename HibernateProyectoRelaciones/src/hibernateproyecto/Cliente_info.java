@@ -71,9 +71,16 @@ public class Cliente_info implements Serializable{
     public void setComentarios(String comentarios) {
         this.comentarios = comentarios;
     }
-    
 
-    // Que columna en la tabla cliente_info tiene la FK
+    @Override
+    public String toString() {
+        return "Cliente_info{" + "id=" + id + ", web=" + web + ", tlf=" + tlf + ", comentarios=" + comentarios + ", cliente=" + cliente + '}';
+    }
+    
+    //Relación Bidireccional. Desde cliente_info hacemos referencia a cliente
+    //Que columna en la tabla cliente_info tiene la FK
+    //fetchType=LAZY, Recupera la entidad solo cuando realmente la necesitamos. 
+    //Importante destacar que la sesión debe estar abierta para poder invocar al Getter correspondiente
     @JoinColumn(name = "idcliente")
     @OneToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
