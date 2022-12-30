@@ -4,6 +4,8 @@
  */
 package hibernateproyecto;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,10 +30,18 @@ public class HibernateProyectoOneToMany {
 		
 		try {
 			
-                        //Creamos el cliente y pedidos
-                        Date mifecha = new Date(120,6,4);
+                       
+                        //Para fechas se puede usar Date o GregorianCalendar
+                         Date mifecha = new Date(120,6,4); //año,mes,dia
+                        //Otra opcion es transformar la fecha de Java a MYSQL
+                        
+                        java.util.Date d = new java.util.Date();  
+                        java.sql.Date date2 = new java.sql.Date(d.getTime());
+                        
+                         //Creamos el cliente y pedidos
+                        
 			Cliente c = miSesion.get(Cliente.class,39);
-			Pedido p1 = new Pedido(mifecha,"Efectivo");
+			Pedido p1 = new Pedido(date2,"Efectivo");
                         Pedido p2 = new Pedido(mifecha,"Paypal");
 			
                         //Asociamos cliente con pedidos. Guardamos la info en las dos tablas
@@ -58,27 +68,21 @@ public class HibernateProyectoOneToMany {
                             System.out.println("El cliente no existe");
                         
                         miSesion.getTransaction().commit();
-                        
-                        //-----  CONSULTAS DESDE CLIENTE_INFO (bidireccional)
-                        //NOTA: Debemos comprobar un id que exista en cliente_info
-                        miSesion.beginTransaction();
-                        Cliente_info cinfo = miSesion.get(Cliente_info.class, 28);
-                        System.out.println(cinfo.toString());
-                        //Obtenemos la información del cliente relacionado
-                        System.out.println(cinfo.getCliente().toString());
-                        miSesion.getTransaction().commit();
-                        
-                        //----- CONSULTAS DESDE CLIENTE (bidireccional)
-                        //NOTA: Debemos comprobar un id que exista en cliente
-                        miSesion.beginTransaction();
-                        Cliente clienteConsulta = miSesion.get(Cliente.class, 27);
-                        System.out.println(clienteConsulta.toString());
-                        //Obtenemos la información del cliente_info relacionado
-                        System.out.println(clienteConsulta.getCinfo().toString());
-                        miSesion.getTransaction().commit();
-                        
-                        
                         */
+                        //-----  CONSULTAR LOS PEDIDOS DE UN CLIENTE
+                        //NOTA: Debemos comprobar un id que exista en CLIENTE
+                        miSesion.beginTransaction();
+                        Cliente cli = miSesion.get(Cliente.class, 39);
+                        System.out.println(cli.toString());
+                        
+                        //Obtenemos los pedidos del cliente relacionado
+                        System.out.println(cli.getPedidos().toString());
+                        miSesion.getTransaction().commit();
+                        
+                       
+                        
+                        
+                        
                         
 		}catch(Exception e) {
 			e.printStackTrace();

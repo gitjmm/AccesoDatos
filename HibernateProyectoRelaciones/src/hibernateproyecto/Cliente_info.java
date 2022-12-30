@@ -15,7 +15,7 @@ import javax.persistence.*;
 @Table(name="cliente_info")
 public class Cliente_info implements Serializable{
 	
-	//Especificamos las propiedades con sus anotaciones
+	//Especificamos las propiedades con sus anotaciones. NO INCLUIR FK
 	@Id
 	@Column(name="id")
 	@GeneratedValue
