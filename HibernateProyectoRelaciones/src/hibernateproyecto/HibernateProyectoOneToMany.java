@@ -14,6 +14,7 @@ import org.hibernate.cfg.Configuration;
 /**
  *
  * @author Jorge Martínez
+ * Importante. Para probar correctamente en los metodos get comprobar que son ids de las tablas
  */
 public class HibernateProyectoOneToMany {
      /**
@@ -40,7 +41,7 @@ public class HibernateProyectoOneToMany {
                         
                          //Creamos el cliente y pedidos
                         
-			Cliente c = miSesion.get(Cliente.class,39);
+			Cliente c = miSesion.get(Cliente.class,1);
 			Pedido p1 = new Pedido(date2,"Efectivo");
                         Pedido p2 = new Pedido(mifecha,"Paypal");
 			
@@ -54,29 +55,32 @@ public class HibernateProyectoOneToMany {
 			miSesion.getTransaction().commit();
 			
 			System.out.println("Registro insertado en cliente y pedidos"+c.toString());
-			/*
-                        //--------   BORRADO -------------------
+			
+                        //--------   BORRADO CLIENTE CON PEDIDOS ASOCIADOS -------------------
                         //Previamente comprobar que existe el id del cliente a eliminar
                         //Si no encuentra el cliente c es null
 			miSesion.beginTransaction();
-                        Cliente clienteBorrado = miSesion.get(Cliente.class,25);
+                        Cliente clienteBorrado = miSesion.get(Cliente.class,3);
                         if (clienteBorrado != null){
                             miSesion.delete(clienteBorrado);
-                            System.out.println("Registro borrado en cliente y cliente info"+clienteBorrado.toString());
+                            System.out.println("Registro borrado en cliente y pedido"+clienteBorrado.toString());
                         }
                         else 
                             System.out.println("El cliente no existe");
                         
                         miSesion.getTransaction().commit();
-                        */
+                        
                         //-----  CONSULTAR LOS PEDIDOS DE UN CLIENTE
                         //NOTA: Debemos comprobar un id que exista en CLIENTE
                         miSesion.beginTransaction();
-                        Cliente cli = miSesion.get(Cliente.class, 39);
-                        System.out.println(cli.toString());
-                        
+                        Cliente cli = miSesion.get(Cliente.class, 1);
+                        if (cli!=null)
+                            System.out.println(cli.toString());
+                        else System.out.println("Cliente no existe");
                         //Obtenemos los pedidos del cliente relacionado
-                        System.out.println(cli.getPedidos().toString());
+                        //System.out.println(cli.getPedidos().toString());
+                        for (Pedido p:cli.getPedidos())
+                             System.out.println(p.toString());
                         miSesion.getTransaction().commit();
                         
                        

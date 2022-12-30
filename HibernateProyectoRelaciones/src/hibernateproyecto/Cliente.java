@@ -20,7 +20,7 @@ public class Cliente implements Serializable{
 	//Especificamos las propiedades con sus anotaciones
 	@Id
 	@Column(name="id")
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@Column(name="nombre")
 	private String nombre;
@@ -95,7 +95,7 @@ public class Cliente implements Serializable{
         //CascadeType.ALL. Aplica en la tabla hija cualquier cambio realizado en la principal
         //@JoinColumn. Indica la columna usada en la join
         @OneToOne(mappedBy = "cliente",cascade=CascadeType.ALL)
-        @JoinColumn(name="id")
+        
         private Cliente_info cinfo;
 
         public Cliente_info getCinfo() {
@@ -109,7 +109,7 @@ public class Cliente implements Serializable{
         
         //Relación con la tabla pedido
         @OneToMany(mappedBy = "cliente_pedido", cascade = CascadeType.ALL)
-        //@JoinColumn(name="id", nullable = false, updatable = false, insertable = false)
+       
         private List<Pedido> pedidos;
         
         public List<Pedido> getPedidos(){
