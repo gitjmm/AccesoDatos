@@ -46,7 +46,7 @@ public class HibernateProyectoManyToMany {
                         //Desde producto añadimos cliente
                         p2.addCliente(c);
                         
-                        //Guardamos el cliente
+                        //Guardamos el cliente y los productos
                       
                         miSesion.beginTransaction();
 			miSesion.save(c);
