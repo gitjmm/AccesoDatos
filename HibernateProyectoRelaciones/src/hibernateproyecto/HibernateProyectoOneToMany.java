@@ -41,7 +41,7 @@ public class HibernateProyectoOneToMany {
                         
                          //Creamos el cliente y pedidos
                         
-			Cliente c = miSesion.get(Cliente.class,35);
+			Cliente c = miSesion.get(Cliente.class,42);
 			Pedido p1 = new Pedido(date2,"Efectivo");
                         Pedido p2 = new Pedido(mifecha,"Paypal");
 			
@@ -61,7 +61,7 @@ public class HibernateProyectoOneToMany {
                         //-----  CONSULTAR LOS PEDIDOS DE UN CLIENTE
                         //NOTA: Debemos comprobar un id que exista en CLIENTE
                         miSesion.beginTransaction();
-                        Cliente cli = miSesion.get(Cliente.class, 35);
+                        Cliente cli = miSesion.get(Cliente.class, 42);
                         if (cli!=null)
                             System.out.println(cli.toString());
                         else System.out.println("Cliente no existe");
