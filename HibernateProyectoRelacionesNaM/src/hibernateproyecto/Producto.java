@@ -5,6 +5,8 @@
 package hibernateproyecto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +31,7 @@ public class Producto implements Serializable{
     private String nombre;
     @Column(name="precio")
     private double precio;
+    
 
     public String getNombre() {
         return nombre;
@@ -55,14 +58,27 @@ public class Producto implements Serializable{
     
     //MAPEO
     @ManyToMany(mappedBy = "productos")
-    private Set<Cliente> clientes;
+    private List<Cliente> clientes = new ArrayList<Cliente>();
 
-    public Set<Cliente> getClientes() {
+    public List<Cliente> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Set<Cliente> clientes) {
+    public void setClientes(List<Cliente> clientes) {
         this.clientes = clientes;
     }
+    
+    public void addCliente(Cliente c)
+    {
+        this.clientes.add(c);
+        c.getProductos().add(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", clientes=" + clientes + '}';
+    }
+    
+    
     
 }

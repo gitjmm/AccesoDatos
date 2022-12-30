@@ -26,48 +26,48 @@ public class HibernateProyectoManyToMany {
                 .addAnnotatedClass(Cliente.class)
                 .addAnnotatedClass(Pedido.class)
                 .addAnnotatedClass(Cliente_info.class)
+                .addAnnotatedClass(Producto.class)
                 .buildSessionFactory();
-		Session miSesion = miFactory.openSession();
+		 
+                Session miSesion = miFactory.openSession();
 		
 		try {
+		
+                        
+                        //Creamos el cliente y los productos
+                        
+			Cliente c = new Cliente("Juan","Guzman","avenida");
+			Producto p1 = new Producto("Prod1");
+                        Producto p2 = new Producto("Prod2");
 			
-                       
-                        //Para fechas se puede usar Date o GregorianCalendar
-                         Date mifecha = new Date(120,6,4); //año,mes,dia
-                        //Otra opcion es transformar la fecha de Java a MYSQL
+                        //Asociamos  productos y clientes
+                       //Desde cliente añadimos producto
+                        c.addProducto(p1);
+                        //Desde producto añadimos cliente
+                        p2.addCliente(c);
                         
-                        java.util.Date d = new java.util.Date();  
-                        java.sql.Date date2 = new java.sql.Date(d.getTime());
-                        
-                         //Creamos el cliente y pedidos
-                        
-			Cliente c = miSesion.get(Cliente.class,35);
-			Pedido p1 = new Pedido(date2,"Efectivo");
-                        Pedido p2 = new Pedido(mifecha,"Paypal");
-			
-                        //Asociamos cliente con pedidos. Guardamos la info en las dos tablas
-                        c.addPedido(p1);
-                        c.addPedido(p2);
-                        //Guardamos los pedidos
+                        //Guardamos el cliente
+                      
                         miSesion.beginTransaction();
-			miSesion.save(p1);
+			miSesion.save(c);
                         miSesion.save(p1);
+                        miSesion.save(p2);
 			miSesion.getTransaction().commit();
 			
-			System.out.println("Registro insertado en cliente y pedidos"+c.toString());
+			System.out.println("Registro insertado en cliente y productos"+c.toString());
 			
                         
                         
                         //-----  CONSULTAR LOS PEDIDOS DE UN CLIENTE
                         //NOTA: Debemos comprobar un id que exista en CLIENTE
                         miSesion.beginTransaction();
-                        Cliente cli = miSesion.get(Cliente.class, 35);
+                        Cliente cli = miSesion.get(Cliente.class, 85);
                         if (cli!=null)
                             System.out.println(cli.toString());
                         else System.out.println("Cliente no existe");
                         //Obtenemos los pedidos del cliente relacionado
                         //System.out.println(cli.getPedidos().toString());
-                        for (Pedido p:cli.getPedidos())
+                        for (Producto p:cli.getProductos())
                              System.out.println(p.toString());
                         miSesion.getTransaction().commit();
                         
@@ -75,7 +75,7 @@ public class HibernateProyectoManyToMany {
                         //Previamente comprobar que existe el id del cliente a eliminar
                         //Si no encuentra el cliente c es null
 			miSesion.beginTransaction();
-                        Cliente clienteBorrado = miSesion.get(Cliente.class,35);
+                        Cliente clienteBorrado = miSesion.get(Cliente.class,38);
                         if (clienteBorrado != null){
                             miSesion.delete(clienteBorrado);
                             System.out.println("Registro borrado en cliente y pedido"+clienteBorrado.toString());
@@ -85,14 +85,14 @@ public class HibernateProyectoManyToMany {
                         
                         miSesion.getTransaction().commit();
                         
-                        
+                        miSesion.close();
                         
                         
 		}catch(Exception e) {
 			e.printStackTrace();
 					
 		}finally {
-			miSesion.close();
+			
 			miFactory.close();
 		}
 	}

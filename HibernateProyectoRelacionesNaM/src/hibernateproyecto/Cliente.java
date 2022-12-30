@@ -134,8 +134,20 @@ public class Cliente implements Serializable{
             joinColumns = {@JoinColumn(name = "cliente_id")},
             inverseJoinColumns = {@JoinColumn(name = "producto_id")}
         )
-        private Set<Producto> productos;
+        private List<Producto> productos = new ArrayList<Producto>();
         
+        public List<Producto> getProductos() {
+        return productos;
+        }
 
+        public void setClientes(List<Producto> productos) {
+            this.productos = productos;
+        }
+        public void addProducto(Producto p)
+        {
+            this.productos.add(p);
+            p.getClientes().add(this);
+        }
+        
 }
 
