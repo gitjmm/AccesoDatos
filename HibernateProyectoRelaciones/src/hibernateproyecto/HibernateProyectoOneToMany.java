@@ -41,7 +41,7 @@ public class HibernateProyectoOneToMany {
                         
                          //Creamos el cliente y pedidos
                         
-			Cliente c = miSesion.get(Cliente.class,1);
+			Cliente c = miSesion.get(Cliente.class,35);
 			Pedido p1 = new Pedido(date2,"Efectivo");
                         Pedido p2 = new Pedido(mifecha,"Paypal");
 			
@@ -56,24 +56,12 @@ public class HibernateProyectoOneToMany {
 			
 			System.out.println("Registro insertado en cliente y pedidos"+c.toString());
 			
-                        //--------   BORRADO CLIENTE CON PEDIDOS ASOCIADOS -------------------
-                        //Previamente comprobar que existe el id del cliente a eliminar
-                        //Si no encuentra el cliente c es null
-			miSesion.beginTransaction();
-                        Cliente clienteBorrado = miSesion.get(Cliente.class,3);
-                        if (clienteBorrado != null){
-                            miSesion.delete(clienteBorrado);
-                            System.out.println("Registro borrado en cliente y pedido"+clienteBorrado.toString());
-                        }
-                        else 
-                            System.out.println("El cliente no existe");
                         
-                        miSesion.getTransaction().commit();
                         
                         //-----  CONSULTAR LOS PEDIDOS DE UN CLIENTE
                         //NOTA: Debemos comprobar un id que exista en CLIENTE
                         miSesion.beginTransaction();
-                        Cliente cli = miSesion.get(Cliente.class, 1);
+                        Cliente cli = miSesion.get(Cliente.class, 35);
                         if (cli!=null)
                             System.out.println(cli.toString());
                         else System.out.println("Cliente no existe");
@@ -83,7 +71,19 @@ public class HibernateProyectoOneToMany {
                              System.out.println(p.toString());
                         miSesion.getTransaction().commit();
                         
-                       
+                       //--------   BORRADO CLIENTE CON PEDIDOS ASOCIADOS -------------------
+                        //Previamente comprobar que existe el id del cliente a eliminar
+                        //Si no encuentra el cliente c es null
+			miSesion.beginTransaction();
+                        Cliente clienteBorrado = miSesion.get(Cliente.class,35);
+                        if (clienteBorrado != null){
+                            miSesion.delete(clienteBorrado);
+                            System.out.println("Registro borrado en cliente y pedido"+clienteBorrado.toString());
+                        }
+                        else 
+                            System.out.println("El cliente no existe");
+                        
+                        miSesion.getTransaction().commit();
                         
                         
                         
