@@ -125,12 +125,8 @@ public class Cliente implements Serializable{
         
         
         //MAPEO N M  con producto
-        @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-        })
-        @JoinTable(
-            name = "cliente_producto",
+        @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+        @JoinTable(name = "cliente_producto",
             joinColumns = {@JoinColumn(name = "cliente_id")},
             inverseJoinColumns = {@JoinColumn(name = "producto_id")}
         )
