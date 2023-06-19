@@ -95,13 +95,10 @@ public class Cliente implements Serializable{
         //CascadeType.ALL. Aplica en la tabla hija cualquier cambio realizado en la principal
         //@JoinColumn. Indica la columna usada en la join
         @OneToOne(mappedBy = "cliente",cascade=CascadeType.ALL)
-        
         private Cliente_info cinfo;
-
         public Cliente_info getCinfo() {
             return cinfo;
         }
-
         public void setCinfo(Cliente_info cinfo) {
             this.cinfo = cinfo;
         }
