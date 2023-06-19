@@ -6,7 +6,7 @@ package hibernateproyecto;
 
 /**
  *
- * @author Jorge Martinez
+ * @author Jorge Martinez Mostazo
  */
 import java.io.Serializable;
 import javax.persistence.*;
