@@ -43,7 +43,7 @@ public class tema6Conectores3 {
                 //Devuelve un objeto conexión que utilizaremos para conectarnos a la base de datos
                 Connection conn = DriverManager.getConnection(URL_CONEXION, usuario, password);
                 //Guardamos en una variable la sentencia DML
-                int id = 10;
+                int id = 11;
                 String nombreusuario = "'aperez'";
                 String clave = "'123456'";
                 String nombre = "'Antonio'";
@@ -64,7 +64,8 @@ public class tema6Conectores3 {
                 System.out.println("Numero de registros afectados en update: "+ res2);
                 int res3 = statement.executeUpdate(deleteTableSQL);
                 System.out.println("Numero de registros afectados en delete: "+ res3);
-                
+                //Solo necesario si autocommit no está activado a true
+                //conn.commit();
                 //Otra forma de insert, update, delete con PreparedStatement
                 int id2 = 20;
                 String nombreusuario2 = "mperez";
@@ -79,6 +80,7 @@ public class tema6Conectores3 {
                 
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
+                
             } catch (ClassNotFoundException e) {
                 System.out.println(e.getMessage());
             } finally {
