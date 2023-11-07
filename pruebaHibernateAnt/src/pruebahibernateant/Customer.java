@@ -14,20 +14,20 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+//import javax.persistence.*
 
 /**
  *
- * @author Usuario
+ * @author Jorge Martinez
  */
 @Entity
 @Table(name = "customer")
 
 public class Customer implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
     @Column(name = "first_name")
@@ -46,7 +46,13 @@ public class Customer implements Serializable {
         this.lastName = lastName;
         this.customernsumber = customernsumber;
     }
-
+    //Constructor con id para poder utilizar update
+    public Customer(int id, String firstName, String lastName, Integer customernsumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.customernsumber = customernsumber;
+    }
     
     
     public Integer getId() {
@@ -103,7 +109,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "pruebahibernateant.Customer[ id=" + id + " ]";
+        return "pruebahibernateant.Customer[ id=" + id + "nombre= "+firstName+ "]";
     }
     
 }
