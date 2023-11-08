@@ -84,8 +84,9 @@ public class Cliente_info implements Serializable{
     //Que columna en la tabla cliente_info tiene la FK
     //fetchType=LAZY, Recupera la entidad solo cuando realmente la necesitamos. 
     //Importante destacar que la sesión debe estar abierta para poder invocar al Getter correspondiente
-    @OneToOne(cascade={CascadeType.PERSIST,
-        CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+    //@OneToOne(cascade={CascadeType.PERSIST,
+    //    CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+    @OneToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "idcliente")
     private Cliente cliente;
 

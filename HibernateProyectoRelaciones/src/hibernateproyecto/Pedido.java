@@ -67,9 +67,10 @@ public class Pedido implements Serializable{
         this.forma_pago = forma_pago;
     }
     //Seleccionamos todos los tipos de cascada excepto REFRESH para que no borre la fk
-    @ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+    //@ManyToOne(cascade={CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH,CascadeType.REFRESH})
+    @ManyToOne(cascade={CascadeType.ALL})
     @JoinColumn(name = "clienteid")
-    private Cliente cliente_pedido;
+    private Cliente cliente_pedido; //Este atributo va a @OneToMany en Cliente
 
     public Cliente getCliente() {
         return cliente_pedido;

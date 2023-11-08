@@ -104,7 +104,9 @@ public class Cliente implements Serializable{
         }
         
         
-        //Relación con la tabla pedido
+        //Relación con la tabla pedido. 
+        //mappedBy evita que Hibernate cree tabla intermedia
+        //cliente_pedido es atributo de @ManyToOne en Pedido
         @OneToMany(mappedBy = "cliente_pedido", cascade = CascadeType.ALL)
        
         private List<Pedido> pedidos;

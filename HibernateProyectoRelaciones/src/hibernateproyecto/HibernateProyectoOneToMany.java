@@ -39,8 +39,8 @@ public class HibernateProyectoOneToMany {
                         java.util.Date d = new java.util.Date();  
                         java.sql.Date date2 = new java.sql.Date(d.getTime());
                         
-                         //Creamos el cliente y pedidos
-                        
+                        //Creamos el cliente y pedidos
+                        //obtenemos el cliente 42
 			Cliente c = miSesion.get(Cliente.class,42);
 			Pedido p1 = new Pedido(date2,"Efectivo");
                         Pedido p2 = new Pedido(mifecha,"Paypal");
