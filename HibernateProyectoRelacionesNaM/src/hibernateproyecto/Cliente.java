@@ -125,7 +125,8 @@ public class Cliente implements Serializable{
         
         
         //MAPEO N M  con producto
-        @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+        //@ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+        @ManyToMany(cascade = {CascadeType.ALL})
         @JoinTable(name = "cliente_producto",
             joinColumns = {@JoinColumn(name = "cliente_id")},
             inverseJoinColumns = {@JoinColumn(name = "producto_id")}
@@ -135,15 +136,15 @@ public class Cliente implements Serializable{
         public List<Producto> getProductos() {
         return productos;
         }
-
-        public void setClientes(List<Producto> productos) {
-            this.productos = productos;
-        }
         public void addProducto(Producto p)
         {
             this.productos.add(p);
             p.getClientes().add(this);
         }
+        public void setClientes(List<Producto> productos) {
+            this.productos = productos;
+        }
+        
         
 }
 
