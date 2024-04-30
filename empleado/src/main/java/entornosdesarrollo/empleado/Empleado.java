@@ -17,7 +17,7 @@ public class Empleado {
    private String puesto;
   
    /**
-    * Metodo constructor por defecto
+    * Metodo constructores por defecto
     */
    public Empleado(){
    }
