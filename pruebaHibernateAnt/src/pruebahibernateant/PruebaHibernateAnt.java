@@ -36,13 +36,17 @@ public class PruebaHibernateAnt {
             session.save(c);
             
             //Actualizamos un objeto con update. Tenemos que incluir id
-            Customer c2 = new Customer(2,"UPDATE","UPDATE",300);
+            Customer c2 = new Customer(2,"UPDATE2","UPDATE2",300);
             session.update(c2);
             
             //Eliminamos el objecto c3. Elimina en base al id
             Customer c3 = new Customer("Pepe","Perez",300);
-            session.save(c3); //Podemos borrar solo con el id del objeto (setID)
+            session.save(c3); //Podemos borrar también solo con el id del objeto (setID)
             session.delete(c3);
+            //Eliminar un registro no creado en la sesión. Pasamos su id.
+            Customer c4 = new Customer();
+            c4.setId(1);
+            session.delete(c4);
             
             session.getTransaction().commit(); //También permite rollback()
             System.out.println("Registro insertado/actualizado/borrado");
